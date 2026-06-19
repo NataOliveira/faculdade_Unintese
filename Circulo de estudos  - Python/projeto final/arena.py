@@ -2,65 +2,71 @@ from char import *
 from random import randint
 from time import sleep
 import msvcrt
+from functions import *
 
-personagem = []
+# SELECÃO DE HERÓI
+personagem_select = None
+hero = (selecionar_heroi(personagem_select))
+
+print('\npressione qualquer tecla para começar a jornada !\n\n')
+msvcrt.getch()
 
 
-while True:
-    
-    print('''
-    Bem-vindo ao jogo! Selecione o caminho que você vai trilhar:
 
-    ⚔️ Soldado       Selecione ==> 1
-    🔮 Mago         Selecione ==> 2
-    🏹 Atirador     Selecione ==> 3
 
-    ''')
+# 1 Laço game
+game_over = False
 
-    try:
-        opcao = int(msvcrt.getch())
-        
-        match opcao:
+while hero.xp <= 1000 and not game_over:
+
+    spawner = mob_fraco_spawner()
+    print('\n' * 20 + f'''Um \033[31m{spawner.nome}\033[0m, foi invocado!!''')
+
+    while spawner.hp > 0 and not game_over:
+
+        print(f'''\n{spawner.nome} | HP: {spawner.hp}\n\n\n
+              -------------------------------
+Seu HP: {hero.hp} | Seu XP Atual: {hero.xp}
+\n1 - Atacar | 2 - Curar\n''')
+
+        acao = int(msvcrt.getch())
+
+        match acao:
             case 1:
-                while True:
+                print('\n' * 20)
+                BaseChar.atacar(hero)
+                spawner.hp = spawner.hp - hero.ataque
+                BaseChar.atacar(spawner)
+                hero.hp = hero.hp - spawner.ataque
 
-                    print('Soldado Selecionado, escolhar qual heróivocê quer invocar para o campo de batalha:')
-                    print(f'\n{aquiles.nome}     | Ataque: {aquiles.ataque}     |Defesa: {aquiles.defesa}   |Poder Especial: {aquiles.ataque_especial}   Selecione ==> 1')
-                    print(f'\n{joana_darc.nome} | Ataque: {joana_darc.ataque}     |Defesa: {joana_darc.defesa}   |Poder Especial: {joana_darc.ataque_especial}   Selecione ==> 2')
-                    print(f'\n{leonidas.nome}    | Ataque: {leonidas.ataque}     |Defesa: {leonidas.defesa}   |Poder Especial: {leonidas.ataque_especial}   Selecione ==> 3\n')
+                if spawner.hp <= 0:
+                    print(f'\n{spawner.nome} foi derrotado !' + '\n' * 5 +
+                          'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
+                    hero.xp += spawner.xp
+                    msvcrt.getch()
 
-                    try:
-                        soldado_escolhido = int(msvcrt.getch())
-                        match soldado_escolhido:
-                            case 1:
-                                personagem = aquiles
-                                break
-                            case 2:
-                                personagem = joana_darc
-                                break
-                            case 3:
-                                personagem = leonidas
-                                break
-                            case _:
-                                print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')
-                                print('pressione qualquer tecla para voltar')
-                                msvcrt.getch()
-                    except ValueError:
-                        print('\033[31misso não é um número\033[0m')
-                break
-                            
             case 2:
-                print('Soldado Selecionado')
-                break
-            case 3:
-                print('Soldado Selecionado')
-                break
+                print('\n' * 20)
+                hero.hp = hero.hp + 100
+                print(f'''Você Consumiu porção de cura !''')
+
             case _:
-                print('Numero Inválido, selecione apenas 1, 2 ou 3')
+                print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')
                 print('pressione qualquer tecla para voltar')
                 msvcrt.getch()
-       
-    except ValueError:
-        print('Numero inválido')
 
-print(f'Herói selecionado: {personagem.nome}')
+            
+        if hero.hp <= 0:
+            game_over = True
+
+if game_over:
+    print('\nGame Over')
+    print('Você foi derrotado')
+    print(f'Seu XP Atual Final: {hero.xp}')
+
+    
+
+    
+    
+
+    
