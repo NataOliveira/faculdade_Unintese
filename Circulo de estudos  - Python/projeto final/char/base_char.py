@@ -50,6 +50,7 @@ class BaseChar():
         return y
 
     
+
         
 # personagem = BaseChar ('Natan', 100,100,100,100,[],100)
 

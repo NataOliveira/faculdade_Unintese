@@ -25,7 +25,7 @@ while hero.xp <= 1000 and not game_over:
     while spawner.hp > 0 and not game_over:
 
         print(f'''\n{spawner.nome} | HP: {spawner.hp}\n\n\n
-              -------------------------------
+-------------------------------
 Seu HP: {hero.hp} | Seu XP Atual: {hero.xp}
 \n1 - Atacar | 2 - Curar\n''')
 
@@ -38,10 +38,11 @@ Seu HP: {hero.hp} | Seu XP Atual: {hero.xp}
                 spawner.hp = spawner.hp - hero.ataque
                 BaseChar.atacar(spawner)
                 hero.hp = hero.hp - spawner.ataque
-
                 if spawner.hp <= 0:
-                    print(f'\n{spawner.nome} foi derrotado !' + '\n' * 5 +
+                    print(f'\n{spawner.nome} foi derrotado ! {spawner.inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
                           'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
+                    
+                    hero.inventario += spawner.inventario
                     hero.xp += spawner.xp
                     msvcrt.getch()
 

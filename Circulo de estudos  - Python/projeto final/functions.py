@@ -121,18 +121,17 @@ def selecionar_heroi(heroi):
 def mob_fraco_spawner():
 
     mob_spawner = lista_mob_fraco[randint(0,3)]
-
+    mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
 
 def mob_elite_spawner():
 
     mob_spawner = lista_mob_elite[randint(0,len(lista_mob_elite)-1)]
- 
-
+    mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
 
 def boss_spa():
 
     mob_spawner = lista_bosses[randint(0,len(lista_bosses)-1)]
-
+    mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
