@@ -9,7 +9,7 @@ class Soldado(BaseChar):
 
  
 # SOLDADOS              NOME       |HP||ATK|DEF||XP||ESPECIAL|
-aquiles    = Soldado('Aquiles',     350, 65, 32, 0, 150,  [])
+aquiles    = Soldado('Aquiles',     3500, 65, 32, 0, 150,  [])
 joana_darc = Soldado("Joana d'Arc", 340, 75, 38, 0, 140,  [])
 leonidas   = Soldado('Leônidas',    390, 50, 45, 0, 110,  [])
 

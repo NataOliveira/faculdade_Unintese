@@ -12,12 +12,10 @@ print('\npressione qualquer tecla para começar a jornada !\n\n')
 msvcrt.getch()
 
 
-
-
 # 1 Laço game
 game_over = False
 
-while hero.xp <= 1000 and not game_over:
+while hero.xp <= 100 and not game_over:
 
     spawner = mob_fraco_spawner()
     print('\n' * 20 + f'''Um \033[31m{spawner.nome}\033[0m, foi invocado!!''')
@@ -27,29 +25,20 @@ while hero.xp <= 1000 and not game_over:
         print(f'''\n{spawner.nome} | HP: {spawner.hp}\n\n\n
 -------------------------------
 Seu HP: {hero.hp} | Seu XP Atual: {hero.xp}
-\n1 - Atacar | 2 - Curar\n''')
+\n1 - Atacar | 2 - Abrir inventário\n''')
 
         acao = int(msvcrt.getch())
 
         match acao:
             case 1:
-                print('\n' * 20)
-                BaseChar.atacar(hero)
-                spawner.hp = spawner.hp - hero.ataque
-                BaseChar.atacar(spawner)
-                hero.hp = hero.hp - spawner.ataque
-                if spawner.hp <= 0:
-                    print(f'\n{spawner.nome} foi derrotado ! {spawner.inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
-                          'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
-                    
-                    hero.inventario += spawner.inventario
-                    hero.xp += spawner.xp
-                    msvcrt.getch()
+               
+               BaseChar.batalha(hero,spawner)
 
             case 2:
-                print('\n' * 20)
-                hero.hp = hero.hp + 100
-                print(f'''Você Consumiu porção de cura !''')
+                
+                BaseChar.abrir_inventario(hero)
+                msvcrt.getch()
+
 
             case _:
                 print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')

@@ -135,3 +135,4 @@ def boss_spa():
     mob_spawner = lista_bosses[randint(0,len(lista_bosses)-1)]
     mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
+

@@ -1,4 +1,5 @@
 from random import randint
+import msvcrt
 
 class BaseChar():
 
@@ -9,7 +10,7 @@ class BaseChar():
         self.defesa = defesa
         self.xp = xp
         self.dano_ultimate = dano_ultimate
-        self.inventario = inventario
+        self._inventario = inventario
         
     def atacar(self):
         print(f'{self.nome} ataca, deferindo \033[31m{self.ataque}\033[0m de dano')
@@ -45,19 +46,120 @@ class BaseChar():
         x = lista_porcoes[randint(0,len(lista_porcoes)-1)]
         y = x[randint(0,len(x)-1)]
 
-        self.inventario += y
+        self._inventario += y
         
         return y
 
-    
-
+    def abrir_inventario(self):
+        print('\n' * 5)
+        print(f'''-------inventário-------\n
+       Items             |quantidade|             
+              ''')
         
+        
+        inventario_pocoes = {"vida": {"pequena": 0, "media": 0, "grande": 0},
+                             "mana": {"pequena": 0, "media": 0, "grande": 0},
+                            "defesa": {"pequena": 0, "media": 0, "grande": 0},
+                            "fortalecimento": {"pequena": 0, "media": 0, "grande": 0},
+} 
+
+        for i in self._inventario:
+
+            if i['nome_item'] == 'Porção de vida':
+                inventario_pocoes['vida']['pequena'] +=1
+
+            elif i['nome_item'] == 'Porção de mana':
+                inventario_pocoes['mana']['pequena'] +=1
+
+            elif i['nome_item'] == 'Poção de Fortalecimento':
+                inventario_pocoes['fortalecimento']['pequena'] +=1
+
+            elif i['nome_item'] == 'Porção de defesa':
+                inventario_pocoes['defesa']['pequena'] +=1
+
+            elif i['nome_item'] == 'Porção de vida média':
+                inventario_pocoes['vida']['media'] +=1
+
+            elif i['nome_item'] == 'Porção de mana média':
+                inventario_pocoes['mana']['media'] +=1
+
+            elif i['nome_item'] == 'Porção de fortalecimento média':
+                inventario_pocoes['fortalecimento']['media'] +=1
+
+            elif i['nome_item'] == 'Porção de defesa média':
+                inventario_pocoes['defesa']['media'] +=1
+
+            elif i['nome_item'] == 'Porção de vida grande':
+                inventario_pocoes['vida']['grande'] +=1
+
+            elif i['nome_item'] == 'Porção de mana grande':
+                inventario_pocoes['mana']['grande'] +=1
+
+            elif i['nome_item'] == 'Porção de fortalecimento grande':
+                inventario_pocoes['fortalecimento']['grande'] +=1
+
+            elif i['nome_item'] == 'Porção de defesa grande':
+                inventario_pocoes['defesa']['grande'] +=1
+  
+# Procura quais items tem no iventario e mostra na tela
+        if inventario_pocoes['vida']['pequena'] > 0:
+            print(f"{'Porção Vida Pequena:':<30} {inventario_pocoes['vida']['pequena']}")
+
+        if inventario_pocoes['vida']['media'] > 0:
+            print(f"{'Porção Vida Média:':<30} {inventario_pocoes['vida']['media']}")
+
+        if inventario_pocoes['vida']['grande'] > 0:
+            print(f"{'Porção Vida Grande:':<30} {inventario_pocoes['vida']['grande']}")
+
+        if inventario_pocoes['mana']['pequena'] > 0:
+            print(f"{'Porção Mana Pequena:':<30} {inventario_pocoes['mana']['pequena']}")
+
+        if inventario_pocoes['mana']['media'] > 0:
+            print(f"{'Porção Mana Média:':<30} {inventario_pocoes['mana']['media']}")
+
+        if inventario_pocoes['mana']['grande'] > 0:
+            print(f"{'Porção Mana Grande:':<30} {inventario_pocoes['mana']['grande']}")
+
+        if inventario_pocoes['fortalecimento']['pequena'] > 0:
+            print(f"{'Porção Fortalecimento Pequena:':<30} {inventario_pocoes['fortalecimento']['pequena']}")
+
+        if inventario_pocoes['fortalecimento']['media'] > 0:
+            print(f"'{'Porção Fortalecimento Média:':<30} {inventario_pocoes['fortalecimento']['media']}")
+
+        if inventario_pocoes['fortalecimento']['grande'] > 0:
+            print(f"{'Porção Fortalecimento Grande:':<30} {inventario_pocoes['fortalecimento']['grande']}")
+
+        if inventario_pocoes['defesa']['pequena'] > 0:
+            print(f"{'Porção Defesa Pequena:':<30} {inventario_pocoes['defesa']['pequena']}")
+
+        if inventario_pocoes['defesa']['media'] > 0:
+            print(f"{'Porção Defesa Média:':<30} {inventario_pocoes['defesa']['media']}")
+
+        if inventario_pocoes['defesa']['grande'] > 0:
+            print(f"{'Porção Defesa Grande:':<30} {inventario_pocoes['defesa']['grande']}")
+        print('\n' * 10)
+    def batalha(self,spawner):
+        print('\n' * 20)
+        BaseChar.atacar(self)
+        spawner.hp = spawner.hp - self.ataque
+        BaseChar.atacar(spawner)
+        self.hp = self.hp - spawner.ataque
+        if spawner.hp <= 0:
+            print(f'\n{spawner.nome} foi derrotado ! {spawner._inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
+                    'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
+            
+            self._inventario += spawner._inventario
+            self.xp += spawner.xp
+            msvcrt.getch()
+
+    def usaritem(self):
+        pass
 # personagem = BaseChar ('Natan', 100,100,100,100,[],100)
 
 # personagem.drop_item()
 
 
-# print(personagem.inventario[0]['descricao'])
+# print(personagem_.inventario[0]['descricao'])
         
    
             
