@@ -5,7 +5,6 @@ import msvcrt
 
 def selecionar_heroi(heroi):  
 
-       
     def printherois(classe, hero):
 
         print('\n'*20 + f'''\033[32mClasse\033[0m {classe} \033[32mSelecionada, escolher qual herói você quer invocar para o campo de batalha:\033[0m
@@ -13,7 +12,7 @@ def selecionar_heroi(heroi):
         Herói     | HP    | Ataque   | Defesa  | Ultimate\n''')
     
         for indice, i in enumerate (hero):
-            print(f'({indice+1}) \033[4m {i.nome:<12} | {i.hp:<5} | {i.ataque:<8} | {i.defesa:<7} | {i.dano_ultimate} \033[0m')
+            print(f'({indice+1}) \033[4m {i._nome:<12} | {i._hp:<5} | {i._ataque:<8} | {i._defesa:<7} | {i._dano_ultimate} \033[0m')
         
         print ('\n'*5)
 
@@ -110,11 +109,11 @@ def selecionar_heroi(heroi):
 
     print(f'''\033[32mHerói selecionado\033[0m : 
         
-            {personagem.nome}
-        HP     :     {personagem.hp}
-        Ataque :     {personagem.ataque}
-        Defesa :     {personagem.defesa}
-        Ultimate:    {personagem.dano_ultimate}\n''')
+            {personagem._nome}
+        HP     :     {personagem._hp}
+        Ataque :     {personagem._ataque}
+        Defesa :     {personagem._defesa}
+        Ultimate:    {personagem._dano_ultimate}\n''')
 
     return personagem
 
@@ -130,9 +129,25 @@ def mob_elite_spawner():
     mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
 
-def boss_spa():
+def boss_spawner():
 
     mob_spawner = lista_bosses[randint(0,len(lista_bosses)-1)]
     mob_spawner.inventario = mob_spawner.items()
     return copy.deepcopy(mob_spawner)
 
+def levelup(self):
+    if self._xp >= 100:
+        print('\n'*20 + '''  
+Você deixou para trás as terras dominadas por criaturas comuns.
+A partir de agora, inimigos mais poderosos surgirão em seu caminho.
+
+              
+ ⚔️   Os Mob Elites despertaram!
+
+Eles possuem mais vida, causam mais dano e carregam recompensas valiosas. 
+Prepare seus equipamentos, aprimore suas habilidades e prove seu valor em batalhas cada vez mais desafiadoras.\n\n''')
+        msvcrt.getch()
+
+    
+
+   

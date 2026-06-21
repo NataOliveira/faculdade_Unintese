@@ -7,8 +7,6 @@ class Boss(BaseChar):
            
 
     
-        
-
 # -BOSS-                     NOME                   |HP||ATK|DEF||XP||ESPECIAL|
 rei_goblin          = Boss('Rei Goblin',           1500, 180, 80, 500,  220, [])
 senhor_dos_zumbis   = Boss('Senhor dos Zumbis',    1800, 160, 65, 550,  180, [])

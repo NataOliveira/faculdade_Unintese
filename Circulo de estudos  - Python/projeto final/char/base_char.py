@@ -4,19 +4,19 @@ import msvcrt
 class BaseChar():
 
     def __init__(self, nome,hp,ataque,defesa,xp,dano_ultimate,inventario):
-        self.nome = nome
-        self.hp = hp
-        self.ataque = ataque
-        self.defesa = defesa
-        self.xp = xp
-        self.dano_ultimate = dano_ultimate
+        self._nome = nome
+        self._hp = hp
+        self._ataque = ataque
+        self._defesa = defesa
+        self._xp = xp
+        self._dano_ultimate = dano_ultimate
         self._inventario = inventario
         
     def atacar(self):
-        print(f'{self.nome} ataca, deferindo \033[31m{self.ataque}\033[0m de dano')
+        print(f'{self._nome} ataca, deferindo \033[31m{self._ataque}\033[0m de dano')
         
     def ultimate(self):
-        print(f'{self.nome} ataca, deferindo \033[31m{self.ultimate}\033[0m de dano')
+        print(f'{self._nome} ataca, deferindo \033[31m{self.ultimate}\033[0m de dano')
 
     def items(self):
       
@@ -137,24 +137,29 @@ class BaseChar():
 
         if inventario_pocoes['defesa']['grande'] > 0:
             print(f"{'Porção Defesa Grande:':<30} {inventario_pocoes['defesa']['grande']}")
-        print('\n' * 10)
+        print('\n' * 2)
+
+    def usar_item(self):
+        pass
+
     def batalha(self,spawner):
+
         print('\n' * 20)
         BaseChar.atacar(self)
-        spawner.hp = spawner.hp - self.ataque
+        spawner._hp = spawner._hp - self._ataque
+
         BaseChar.atacar(spawner)
-        self.hp = self.hp - spawner.ataque
-        if spawner.hp <= 0:
-            print(f'\n{spawner.nome} foi derrotado ! {spawner._inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
+        self._hp = self._hp - spawner._ataque
+
+        if spawner._hp <= 0:
+            print(f'\n{spawner._nome} foi derrotado ! {spawner._inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
                     'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
             
             self._inventario += spawner._inventario
-            self.xp += spawner.xp
+            self._xp += spawner._xp
             msvcrt.getch()
 
-    def usaritem(self):
-        pass
-# personagem = BaseChar ('Natan', 100,100,100,100,[],100)
+    
 
 # personagem.drop_item()
 
