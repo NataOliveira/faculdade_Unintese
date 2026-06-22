@@ -12,13 +12,19 @@ class BaseChar():
         self._dano_ultimate = dano_ultimate
         self._inventario = inventario
         
-    def atacar(self):
-        print(f'{self._nome} ataca, deferindo \033[31m{self._ataque}\033[0m de dano')
-        
-    def ultimate(self):
-        print(f'{self._nome} ataca, deferindo \033[31m{self.ultimate}\033[0m de dano')
+    def atacar(self,oponente):
+        oponente._hp -= self._ataque
+        return self._ataque    
+    
+    def ganhar_xp(self,oponente):
 
-    def items(self):
+        self._xp += oponente._xp
+    
+    def ultimate(self,oponente):
+        oponente._hp -= self._dano_ultimate
+        return self._dano_ultimate    
+
+    def pocoes_lista():
       
         porcao_cura                     = [{'nome_item': 'Porção de vida', 'descricao': f'Um líquido vermelho brilhante que acelera a recuperação do corpo. Ao ser consumida, restaura 20% da vida do usuário.', 'quantidade': 0.20 }]
         porcao_mana                     = [{'nome_item': 'Porção de mana', 'descricao': f'Uma essência azul repleta de energia arcana. Reabastece as reservas mágicas e permite conjurar mais feitiços, restaura 15% da mana do usuário.', 'quantidade': 0.20 }]
@@ -41,21 +47,24 @@ class BaseChar():
 
         porcoes_grandes = [porcao_cura_grande,porcao_mana_grande,porcao_de_fortalecimento_grande,porcao_protecao_grande]
 
-        lista_porcoes = [porcoes_pequenas, porcoes_medias, porcoes_grandes]
+        lista_pocoes = [porcoes_pequenas, porcoes_medias, porcoes_grandes]
 
-        x = lista_porcoes[randint(0,len(lista_porcoes)-1)]
-        y = x[randint(0,len(x)-1)]
-
-        self._inventario += y
+        return lista_pocoes
         
-        return y
+    def drop_items(self,hero):
 
+        lista_item_drop = BaseChar.pocoes_lista()
+        lista_pocoes =  lista_item_drop[randint(0,len(lista_item_drop)-1)]
+        uma_pocao_aleatoria = lista_pocoes[randint(0,len(lista_pocoes)-1)]
+
+        self._inventario += uma_pocao_aleatoria
+        hero._inventario += self._inventario
+        
     def abrir_inventario(self):
         print('\n' * 5)
         print(f'''-------inventário-------\n
        Items             |quantidade|             
               ''')
-        
         
         inventario_pocoes = {"vida": {"pequena": 0, "media": 0, "grande": 0},
                              "mana": {"pequena": 0, "media": 0, "grande": 0},
@@ -141,34 +150,3 @@ class BaseChar():
 
     def usar_item(self):
         pass
-
-    def batalha(self,spawner):
-
-        print('\n' * 20)
-        BaseChar.atacar(self)
-        spawner._hp = spawner._hp - self._ataque
-
-        BaseChar.atacar(spawner)
-        self._hp = self._hp - spawner._ataque
-
-        if spawner._hp <= 0:
-            print(f'\n{spawner._nome} foi derrotado ! {spawner._inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
-                    'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
-            
-            self._inventario += spawner._inventario
-            self._xp += spawner._xp
-            msvcrt.getch()
-
-    
-
-# personagem.drop_item()
-
-
-# print(personagem_.inventario[0]['descricao'])
-        
-   
-            
-
-
-    
-

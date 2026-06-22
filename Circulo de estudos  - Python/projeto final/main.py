@@ -1,6 +1,6 @@
 from char import *
 from random import randint
-from time import sleep
+
 import msvcrt
 from functions import *
 
@@ -15,83 +15,40 @@ msvcrt.getch()
 # 1 Laço game
 game_over = False
 
-
-while hero._xp <= 100 and not game_over:
+#------Game até 100 XP| Mobs fracos-----
+while hero._xp < 100 and not game_over:
 
     spawner = mob_fraco_spawner()
-    print('\n' * 20 + f'''Um \033[31m{spawner._nome}\033[0m, foi invocado!!''')
-
-    while spawner._hp > 0 and not game_over:
-
-        print(f'''\n{spawner._nome} | HP: {spawner._hp}\n\n\n
--------------------------------
-Seu HP: {hero._hp} | Seu XP Atual: {hero._xp}
-\n1 - Atacar | 2 - Abrir inventário\n''')
-
-        acao = int(msvcrt.getch())
-
-        match acao:
-            case 1:
-               
-               BaseChar.batalha(hero,spawner) 
-
-            case 2:
-                
-                BaseChar.abrir_inventario(hero)
-                msvcrt.getch()
+    hero, game_over = batalha(hero,game_over, spawner)
 
 
-            case _:
-                print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')
-                print('pressione qualquer tecla para voltar')
-                msvcrt.getch()
+#------Batalha com Boss---------
+while hero._xp < 100 and not game_over:
 
-            
-        if hero._hp <= 0:
-            game_over = True
+    spawner = boss_spawner()
+    hero, game_over = batalha(hero,game_over, spawner)
 
+#-----Mensagem de LEVEL UP---------
 levelup(hero)
 
 
-while hero._xp <= 200 and not game_over:
+#------Game até 200 XP| Mobs fracos-----
+while hero._xp < 200 and not game_over:
 
     spawner = mob_elite_spawner()
-    print('\n' * 20 + f'''Um \033[31m{spawner._nome}\033[0m, foi invocado!!''')
-
-    while spawner._hp > 0 and not game_over:
-
-        print(f'''\n{spawner._nome} | HP: {spawner._hp}\n\n\n
--------------------------------
-Seu HP: {hero._hp} | Seu XP Atual: {hero._xp}
-\n1 - Atacar | 2 - Abrir inventário\n''')
-
-        acao = int(msvcrt.getch())
-
-        match acao:
-            case 1:
-               
-               BaseChar.batalha(hero,spawner) 
-
-            case 2:
-                
-                BaseChar.abrir_inventario(hero)
-                msvcrt.getch()
+    hero, game_over = batalha(hero,game_over,spawner)
 
 
-            case _:
-                print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')
-                print('pressione qualquer tecla para voltar')
-                msvcrt.getch()
+#------Batalha com Boss---------
+while hero._xp < 100 and not game_over:
 
-            
-        if hero._hp <= 0:
-            game_over = True
-
-
+    spawner = boss_spawner()
+    hero, game_over = batalha(hero,game_over, spawner)
+        
 if game_over:
-    print('\nGame Over')
+    print('\n\n\n\n\033[31m-----Game Over-----\033[0m')
     print('Você foi derrotado')
-    print(f'Seu XP Atual Final: {hero._xp}')
+    print(f'Seu Xp Final: {hero._xp}\n\n')
 
     
     

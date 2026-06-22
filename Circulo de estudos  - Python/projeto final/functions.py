@@ -120,19 +120,19 @@ def selecionar_heroi(heroi):
 def mob_fraco_spawner():
 
     mob_spawner = lista_mob_fraco[randint(0,3)]
-    mob_spawner.inventario = mob_spawner.items()
+   
     return copy.deepcopy(mob_spawner)
 
 def mob_elite_spawner():
 
     mob_spawner = lista_mob_elite[randint(0,len(lista_mob_elite)-1)]
-    mob_spawner.inventario = mob_spawner.items()
+  
     return copy.deepcopy(mob_spawner)
 
 def boss_spawner():
 
     mob_spawner = lista_bosses[randint(0,len(lista_bosses)-1)]
-    mob_spawner.inventario = mob_spawner.items()
+
     return copy.deepcopy(mob_spawner)
 
 def levelup(self):
@@ -148,6 +148,63 @@ Eles possuem mais vida, causam mais dano e carregam recompensas valiosas.
 Prepare seus equipamentos, aprimore suas habilidades e prove seu valor em batalhas cada vez mais desafiadoras.\n\n''')
         msvcrt.getch()
 
-    
+def batalha(hero,game_over,spawner):
 
-   
+    print('\n' * 20 + f'''Um \033[31m{spawner._nome}\033[0m, foi invocado!!''')
+
+    while spawner._hp > 0 and not game_over:
+
+        print(f'''\n{spawner._nome} | HP: {spawner._hp}\n\n\n
+-------------------------------
+Seu HP: {hero._hp} | Seu XP Atual: {hero._xp}
+\n 1 - Atacar | 2 - Usar ultimate | 3 - Abrir inventário\n''')
+
+        acao = int(msvcrt.getch())
+        
+        match acao:
+            
+            case 1:
+               
+                hero.atacar(spawner)
+
+                if spawner._hp > 0:
+
+                    spawner.atacar(hero)
+                
+                else:
+            
+                    BaseChar.drop_items(spawner,hero)
+                    BaseChar.ganhar_xp(hero, spawner)
+                    
+                    print(f'\n{spawner._nome} foi derrotado ! {spawner._inventario[0]['nome_item']}, foi dropado' + '\n' * 5 +
+                    'Pressione qualquer tecla para próxima batalha...' + '\n' * 3)
+                    msvcrt.getch()
+                    
+            case 2:
+
+                cooldown = 0
+                if cooldown > 0:
+                    print('Habilidade em cooldown')
+                    cooldown -= 1
+                    msvcrt.getch()
+                    batalha(hero,game_over,spawner)
+                else:
+                    hero.ultimate(spawner)
+                    cooldown = 3
+                    
+                    
+
+            case 3:
+                BaseChar.abrir_inventario(hero)
+                msvcrt.getch()
+
+            case _:
+                print('\033[31mNumero Inválido, selecione apenas 1, 2 ou 3\033[0m')
+                print('pressione qualquer tecla para voltar')
+                msvcrt.getch()
+
+        if hero._hp <= 0:
+            game_over = True
+            
+
+    return hero,game_over

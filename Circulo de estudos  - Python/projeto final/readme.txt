@@ -5,7 +5,7 @@
 
 Arquivo main.py
 
-Onde o jogo se inicia, chammando as funções do arquivo functions.py e métodos da SuperClasse BaseChar. enquanto jogador atender as condicionais o jogo continua.
+Onde o jogo se inicia, chammando as funções do arquivo functions.py. Enquanto o jogador atender as condicionais o jogo continua.
 
 
 #################################SuperClasse-BaseChar########################################
@@ -14,7 +14,7 @@ Arquivo char/base_char.py
 
 SuperClasse BaseChar:
 
-projetada para gerenciar atributos de personagens, inventários e funções de combate num jogo de RPG. a classe possui os atributos e métodos:
+projetada para gerenciar atributos de personagens, inventários e funções de combate do jogo. a classe possui os atributos e métodos:
 
 
 Atributos:
@@ -33,29 +33,34 @@ self._inventário (lista) =  lista que armazena a lista de itens.
 
 Métodos:
 
-def atacar(self,spawner):
+def atacar(self,oponente):
 
-mostra no console o ataque do personagem, mostrando o dano causado.
+Aplica o dano de ataque básico diretamente no HP do oponente.Este método serve como base e será sobrescrito pelas subclasses através de polimorfismo
+
+def ganhar_xp(self,oponente):
+
+Faz o personagem receber o valor de Xp do oponente derrotado.
 
 def ataque_ultimate(self):
 
-mostra no console o dano causado pela ultimate do personagem.
+fará o mesmo que o metodo atacar(). porém usando o dano_utlimate. (função em desenvolvimento)
 
 def items(self):
 
-Gera e seleciona aleatoriamente uma categoria (Pequena, Média ou Grande) e um tipo de poção (Cura, Mana, Fortalecimento ou Defesa), inserindo-a no inventário e retornando o item ganho.
+Gera items de categoria (pequena, média ou grande) dos tipos de poção (cura, mana, fortalecimento ou defesa)
 
 def abrir_inventario(self):
 
-Agrupa, contabiliza e exibe no console os items dentro do inventário do personagem.
+Agrupa, contabiliza e exibe no console os items dentro do inventário do personagem heroi.
 
 def usar item(self):
 
-função retornará uma poção que o personagem tiver no inventário escolhida pelo jogador, aprimorando o status do personagem.
+Permitirá ao jogador escolher e consumir uma poção do inventário, aplicando uma melhoria nos atributos do personagem herói. (função em desonvolvimento)
 
-def batalha(sellf, spawner):
 
-Executa um ataque síncrono entre o herói e o oponente usando o valor do atributo ataque, mostrando no console o dano causado entre eles. E quando o oponente for derrotado o herói recebe o XP e item que o oponente possuía em seu inventário. 
+def drop_items(self,hero):
+
+Recebe uma poção aleatória da lista de items, adiciona no inventário do herói.
 
 
 
@@ -118,4 +123,9 @@ def boss_spawner():
 função gera e retorna uma cópia aleatória de um mob da classe boss.
 
 
+def levelup(): Mostra para o player que elevou o nível do jogo
+
+def batalha(self, spawner):
+
+Executa um ataque síncrono entre o herói e o oponente usando o valor do atributo ataque, mostrando no console o dano causado entre eles. E quando o oponente for derrotado o herói recebe o XP e item que o oponente possuía em seu inventário. 
 
