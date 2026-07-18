@@ -1,0 +1,47 @@
+body{
+    background-color: #fff;
+    color: #000;
+    transition: background 0.3s;
+}
+
+body.dark-mode{
+    background-color: #000;
+    color: #fff;
+}
+
+.hidden{
+    display: none;
+}
+
+.active{
+    display: block;
+    transition: display 0.5s ease-in-out;
+}
+
+.parallaxBg{
+    height: 100vh;
+    background-image: url(et.jpg);
+    background-attachment: fixed;
+}
+.containerCarrossel{
+    position: relative;
+    width: 300px;
+    overflow: hidden;
+}
+
+.carrossel{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide{
+    min-width: 300px;
+    height: 200px;
+}
+
+.caixa{
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    margin-top: 50px;
+}
