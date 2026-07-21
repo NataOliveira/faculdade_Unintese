@@ -10,13 +10,29 @@
 <body>
 
     <section class="hero">
-        <h1>Projeto Final - Lvl 2</h1>
+        <h1 id="tituloSite" >Projeto Final - Lvl 2</h1>
         <div class="carrossel">
 
-           <button id="nextDesktop" class="btn">&lt;&lt;</button>
+           <button id="prevDesktop" class="btn">&lt;&lt;</button>
            <div class="apis">
 
                 <div id="track">
+
+                    <div class="slide">
+                        <div class="card-tradutor">
+                            <div class="caixa-texto">
+                                <label for="textoOriginal">Texto Original (Inglês):</label>
+                                <textarea id="textoOriginal" placeholder="Digite ou cole a frase aqui..."></textarea>
+                            </div>
+
+                            <button id="btnTraduzir" class="btn-traduzir">Traduzir Texto</button>
+
+                            <div class="caixa-texto">
+                                <label for="textoTraduzido">Tradução (Português):</label>
+                                <div id="textoTraduzido" class="painel-resultado">Sua tradução aparecerá aqui...</div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="slide">
 
@@ -34,14 +50,12 @@
                                 <h2 id="char-status"></h2>
                             </div>
                             <div class="frase">
-                                <h3 id="char-frase"></h2>
+                                <h3 id="char-frase"></h3>
                             </div>
                         </div>
                         
                     </div>
-                    <div class="slide">
-                        
-                    </div>
+                    
                     <div class="slide">
                        
                     </div>
@@ -49,7 +63,7 @@
                 </div>
 
             </div>
-            <button id="prevDesktop"  class="btn">&gt;&gt;</button>
+            <button id="nextDesktop"  class="btn">&gt;&gt;</button>
 
             <div class="btnsMobile">
                 <button id="prevMobile" class="btnMbl">&lt;&lt; Anterior</button>

@@ -2,6 +2,7 @@ const track = document.getElementById('track');
 const slides = document.querySelectorAll('.slide'); 
 const totalSlides = slides.length;
 let index = 0;
+const titulo = document.getElementById('tituloSite')
 
 function updateCarrossel(){
     track.style.transform = `translateX(-${index * 100}%)`;
@@ -54,7 +55,6 @@ document.addEventListener("visibilitychange",() =>{
 })
 
 
-
 async function buscarPersonagem(id){
     const url =`https://thesimpsonsapi.com/api/characters/${id}`
 
@@ -82,8 +82,6 @@ function mostrarPersonagem(dados){
   const idadePersonagem = document.getElementById('char-idade');
   const statusPersonagem = document.getElementById('char-status');
   
-  
-
   nomePersonagem.textContent = dados.name;
   profissaoPersonagem.textContent = `occupation: ${dados.occupation}`;
   idadePersonagem.textContent = `Age: ${dados.age}`;
@@ -102,7 +100,7 @@ function mostrarPersonagem(dados){
 }
 buscarPersonagem(1);
 
-let num = 0
+let num = 2
 document.getElementById('char-foto').addEventListener('click', () => {
 
     
@@ -111,3 +109,35 @@ document.getElementById('char-foto').addEventListener('click', () => {
     
     
 })
+
+
+
+async function traduzir(texto){
+
+    if (!texto || texto == '"..."') return texto;
+
+    const urlTranslate = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(texto)}&langpair=en|pt-br`;
+
+    try{
+        const resposta = await fetch(urlTranslate)
+        const dados = await resposta.json()
+
+        return dados.responseData.translatedText;
+    } catch (error){
+        console.log("Erro ao traduzir",error);
+        return texto;   
+    }
+}
+
+document.querySelector(".btn-traduzir").addEventListener('click', async () => {
+
+    const boxTextoOriginal = document.getElementById("textoOriginal");
+    const boxTextoTraduzido = document.getElementById("textoTraduzido");
+
+    const textoTraduzido = boxTextoOriginal.value;
+
+    boxTextoTraduzido.innerText = await traduzir(textoTraduzido);
+})
+
+
+

@@ -11,7 +11,7 @@ body {
 }
 
 .hero {
-  background-color: #f1f1f1;
+  background-color: #e3e2e2;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -71,6 +71,7 @@ body {
   align-items: center;
   justify-content: space-between;
   
+  
 }
 
 .apis {
@@ -82,6 +83,7 @@ body {
   background-color: #ffffff;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   
 }
 
@@ -102,7 +104,6 @@ body {
   justify-content: center;
   flex-shrink: 0; 
 }
-
 
 .fotoPersonagemdiv{
     display: flex;
@@ -162,6 +163,68 @@ body {
     justify-content: center;
 }
 
+/*---Tradutor Api---*/
+.card-tradutor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: #9f9fa0;
+    color: #020202;
+    font-family: Arial, sans-serif;
+}
+
+.caixa-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.caixa-texto label {
+    font-size: 0.9rem;
+    color: #000000;
+    margin-block: 0.5rem;
+    font-weight: 500;
+}
+
+#textoOriginal {
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    color: #000000;
+    resize: vertical;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.btn-traduzir {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #343465;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-traduzir:hover {
+    background: rgb(75, 75, 75);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.painel-resultado {
+    min-height: 90px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fefeff;
+    border: 1px #444;
+    font-size: 1rem;
+    word-break: break-word;
+}
 
 
 .btnsMobile {
@@ -196,18 +259,7 @@ body {
        height: 40%;;
     }
 
-    .nameJob{
-       
-    }
-
-    .idadeStatus{
-       
-    }
-
-    .frase{
-    
-    }
-
+  
     .btn {
         display: none !important;
     }
