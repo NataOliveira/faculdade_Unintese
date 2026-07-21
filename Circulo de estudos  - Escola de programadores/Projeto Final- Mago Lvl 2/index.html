@@ -10,16 +10,18 @@
 <body>
 
     <section class="hero">
-        <h1 id="tituloSite" >Projeto Final - Lvl 2</h1>
+
         <div class="carrossel">
 
-           <button id="prevDesktop" class="btn">&lt;&lt;</button>
+           <button id="prevDesktop" class="btn">&lt;</button>
            <div class="apis">
 
                 <div id="track">
 
                     <div class="slide">
+                        
                         <div class="card-tradutor">
+                            <h2 id="tituloApi" >Tadutor API</h2>
                             <div class="caixa-texto">
                                 <label for="textoOriginal">Texto Original (Inglês):</label>
                                 <textarea id="textoOriginal" placeholder="Digite ou cole a frase aqui..."></textarea>
@@ -35,35 +37,33 @@
                     </div>
 
                     <div class="slide">
+                        <h2 id="tituloApi" >The Simpsons API</h2>
+                        <div class="divFoto">
 
-                        <div class="fotoPersonagemdiv">
-                        <img id="char-foto" class="fotoPersonagem" src="" alt="Carregando personagem..." />
+                            <button id="prevPersonagem"  class="btnPrev">Prev</button>
+                            <div class="fotoPersonagemdiv">
+                                <img id="char-foto" class="fotoPersonagem" src="" alt="Carregando personagem..." />
+                            </div>
+                            <button id="nextPersonagem"  class="btnNext">Next</button>
+                            
                         </div>
 
-                        <div class="dadosPersonagem">
-                            <div class="nameJob">
+                        <div class="dados">
+                            <div class="dadosPersonagem">
                                 <h2 id="char-nome"></h2>
-                                <h3 id="char-trabalho"></h3>
-                            </div>
-                            <div class="idadeStatus">
+                                <h2 id="char-trabalho"></h2>
                                 <h2 id="char-idade"></h2>
                                 <h2 id="char-status"></h2>
-                            </div>
-                            <div class="frase">
-                                <h3 id="char-frase"></h3>
+                                <h4 id="char-frase"></h4>
                             </div>
                         </div>
                         
-                    </div>
-                    
-                    <div class="slide">
-                       
                     </div>
 
                 </div>
 
             </div>
-            <button id="nextDesktop"  class="btn">&gt;&gt;</button>
+            <button id="nextDesktop"  class="btn">&gt;</button>
 
             <div class="btnsMobile">
                 <button id="prevMobile" class="btnMbl">&lt;&lt; Anterior</button>

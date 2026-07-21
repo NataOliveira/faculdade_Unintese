@@ -100,15 +100,21 @@ function mostrarPersonagem(dados){
 }
 buscarPersonagem(1);
 
-let num = 2
-document.getElementById('char-foto').addEventListener('click', () => {
+let num = 1
+document.getElementById('nextPersonagem').addEventListener('click', () => {
 
     
+    num ++;
     buscarPersonagem(num);
-    num ++
-    
-    
-})
+ 
+});
+document.getElementById('prevPersonagem').addEventListener('click', () => {
+
+   if (num > 1) {
+        num--;
+        buscarPersonagem(num);
+    };
+});
 
 
 
