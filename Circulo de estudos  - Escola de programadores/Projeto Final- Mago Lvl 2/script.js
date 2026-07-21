@@ -83,7 +83,7 @@ function mostrarPersonagem(dados){
   const statusPersonagem = document.getElementById('char-status');
   
   nomePersonagem.textContent = dados.name;
-  profissaoPersonagem.textContent = `occupation: ${dados.occupation}`;
+  profissaoPersonagem.textContent = `Occupation:${dados.occupation}`;
   idadePersonagem.textContent = `Age: ${dados.age}`;
   statusPersonagem.textContent = `Status: ${dados.status}`
 
