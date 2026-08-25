@@ -6,31 +6,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/nome"
+        android:layout_margin="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
 
+        android:text="Dormir"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/tarefa"
+        android:id="@+id/descricao"
         android:layout_margin="10dp"
-        android:layout_width="match_parent"
+
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dormir, acordar, estudar"
+
+        android:text="Dormir até acordar"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/nome" />
 
     <TextView
         android:id="@+id/hora"
         android:layout_margin="10dp"
-        android:layout_width="match_parent"
+
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="19:00h"
-        app:layout_constraintTop_toBottomOf="@id/tarefa"
+
+        android:text="00:00h"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descricao" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
