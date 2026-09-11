@@ -34,17 +34,27 @@ class ArvoreBuscar:
             print(no.valor)
             self.em_ordem(no.direita)
     
-    def pre_rodem(self, no):
-        pass
+    def pre_ordem(self, no):
+         if no:    
+            print(no.valor)                    #                30         70
+            self.pre_ordem(no.esquerda)#            20       40
+            self.pre_ordem(no.direita)
     
-    def pos_rodem(self, no):
-        pass
+    def pos_ordem(self, no):
+         if no:                        #                30         70
+            self.pos_ordem(no.esquerda)#            20       40
+            self.pos_ordem(no.direita)
+            print(no.valor)
 
 arvore = ArvoreBuscar()
 
-lista = [50,30,70,20,40]
+lista = [80,60,30,20,50]
 for valor in lista:
     arvore.inserir(valor)
 
 print("Printar em ordem")
 arvore.em_ordem(arvore.raiz)
+print("Printar em pré ordem")
+arvore.pre_ordem(arvore.raiz)
+print("Printar em pós ordem")
+arvore.pos_ordem(arvore.raiz)
